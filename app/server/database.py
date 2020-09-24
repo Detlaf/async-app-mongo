@@ -1,7 +1,8 @@
 import motor.motor_asyncio
+from decouple import config
 from bson.objectid import ObjectId
 
-MONGO_DETAILS = "mongodb://localhost:27017"
+MONGO_DETAILS = config('MONGO_DETAILS')
 
 client = motor.motor_asyncio.AsyncIOMotorClient(MONGO_DETAILS)
 database = client.students
