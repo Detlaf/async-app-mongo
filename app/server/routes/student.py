@@ -1,27 +1,28 @@
 from fastapi import APIRouter, Body
 from fastapi.encoders import jsonable_encoder
+
 from app.server.database import (
     add_student,
     delete_student,
     retrieve_student,
     retrieve_students,
-    update_student
+    update_student,
 )
 from app.server.models.student import (
     ErrorResponseModel,
     ResponseModel,
     StudentSchema,
-    UpdateStudentModel
+    UpdateStudentModel,
 )
-
 
 router = APIRouter()
 
-@router.post("/", response_description="student data added into the database")
-async def add_student_data(student: StudentSchema=Body(...)):
+
+@router.post("/", response_description="Student data added into the database")
+async def add_student_data(student: StudentSchema = Body(...)):
     student = jsonable_encoder(student)
     new_student = await add_student(student)
-    return ResponseModel(new_student, "student added successfully")
+    return ResponseModel(new_student, "Student added successfully.")
 
 
 @router.get("/", response_description="Students retrieved")
@@ -66,4 +67,3 @@ async def delete_student_data(id: str):
     return ErrorResponseModel(
         "An error occurred", 404, "Student with id {0} doesn't exist".format(id)
     )
-

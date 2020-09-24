@@ -1,5 +1,7 @@
 from typing import Optional
+
 from pydantic import BaseModel, EmailStr, Field
+
 
 class StudentSchema(BaseModel):
     fullname: str = Field(...)
@@ -15,7 +17,7 @@ class StudentSchema(BaseModel):
                 "email": "jdoe@x.edu.ng",
                 "course_of_study": "Water resources engineering",
                 "year": 2,
-                "gpa": "3.0"
+                "gpa": "3.0",
             }
         }
 
@@ -34,7 +36,7 @@ class UpdateStudentModel(BaseModel):
                 "email": "jdoe@x.edu.ng",
                 "course_of_study": "Water resources and environmental engineering",
                 "year": 4,
-                "gpa": "4.0"
+                "gpa": "4.0",
             }
         }
 
@@ -48,7 +50,4 @@ def ResponseModel(data, message):
 
 
 def ErrorResponseModel(error, code, message):
-    return {"error": error,
-            "code": code,
-            "message": message}
-
+    return {"error": error, "code": code, "message": message}
